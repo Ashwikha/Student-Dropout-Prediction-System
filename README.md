@@ -12,6 +12,7 @@ The Student Dropout Prediction System is a web-based application developed using
 * PDF report generation
 * Data visualization through charts and graphs
 * Student search and management functionality
+* Add, update, search, and maintain student academic records efficiently.
 
 ## Technologies Used
 
