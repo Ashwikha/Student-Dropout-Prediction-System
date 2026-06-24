@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Success & Dropout Analytics System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+
+    <h1>🎓 Student Success & Dropout Analytics System</h1>
+
+    <form action="/predict" method="POST">
+        <label>Department</label>
+        <select name="department">
+
+        <option>CSE</option>
+        <option>IT</option>
+        <option>AIML</option>
+        <option>AIDS</option>
+        <option>CSBS</option>
+        <option>BioTech</option>
+
+        <option>ECE</option>
+        <option>EEE</option>
+        <option>EIE</option>
+
+        <option>MECH</option>
+        <option>MECHATRONICS</option>
+
+        <option>CIVIL</option>
+        <option>CHEM</option>
+
+        <option>CYBER</option>
+
+        <option>MBA</option>
+
+        <option>MTECH CSE</option>
+
+        </select>
+
+        <br><br>
+
+        <label>Student Name</label>
+        <input type="text" name="name" required>
+
+        <br><br>
+
+        <label>Roll Number</label>
+        <input type="text" name="rollno" required>
+
+        <br><br>
+
+        <label>Year</label>
+        <input type="number" name="year" min="1" max="4" required>
+
+        <br><br>
+
+        <label>Attendance (%)</label>
+        <input type="number" name="attendance" min="0" max="100" step="0.1" required>
+
+        <br><br>
+
+        <label>CGPA</label>
+        <input type="number" step="0.01" name="cgpa" min="0" max="10" required>
+
+        <br><br>
+
+        <label>Backlogs</label>
+        <input type="number" name="backlogs" min="0" required>
+
+        <br><br>
+
+        <label>Internal Marks</label>
+        <input type="number" name="marks" min="0" max="100" required>
+
+        <br><br>
+
+        <label>Fee Paid</label>
+        <select name="fee">
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+        </select>
+
+        <br><br>
+
+        <button type="submit">Predict</button>
+    </form>
+
+    {% if prediction %}
+        <hr>
+        <h2>Student Report</h2>
+        <p><b>Name:</b> {{ name }}</p>
+        <p><strong>Roll Number:</strong> {{ rollno }}</p>
+        <p><strong>Risk Score:</strong> {{ risk }}%</p>
+        <p><strong>Placement Score:</strong> {{ placement_score }}%</p>
+
+        <div class="risk-box {{ prediction.lower().replace(' ', '-') }}">
+            <h2>Result: {{ prediction }}</h2>
+        </div>
+
+        {% if warnings %}
+            <div class="early-warning-alerts" style="margin-top: 20px; padding: 15px; border-radius: 6px; background-color: #fff3cd; border: 1px solid #ffeeba;">
+                <h3 style="margin-top: 0; color: #856404; font-size: 1.2em;">⭐ Early Warning Alerts</h3>
+                <ul style="list-style-type: none; padding-left: 0; margin-bottom: 0;">
+                    {% for item in warnings %}
+                        <li style="background: #f8d7da; color: #721c24; margin-bottom: 8px; padding: 10px 14px; border-radius: 4px; border-left: 5px solid #dc3545; font-weight: bold; font-size: 0.95em;">
+                            {{ item }}
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% else %}
+            <div class="early-warning-alerts" style="margin-top: 20px; padding: 15px; border-radius: 6px; background-color: #d4edda; border: 1px solid #c3e6cb; color: #155724; font-weight: bold;">
+                ✅ Student meets all ideal academic performance thresholds.
+            </div>
+        {% endif %}
+
+        <br>
+        <a href="/generate_report">
+            <button type="button" class="btn-download">Generate PDF Report</button>
+        </a>
+    {% endif %}
+
+    <hr>
+     
+    
+
+</body>
+</html>

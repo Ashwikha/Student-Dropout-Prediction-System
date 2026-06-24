@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Search Result</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <style>
+        body {
+            background-color: #f4f6f9;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            margin: 40px auto;
+            max-width: 800px;
+            text-align: center;
+        }
+
+        .profile-card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        table tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+
+        .risk-box {
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 6px;
+            font-weight: bold;
+        }
+
+        .high-risk {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .medium-risk {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .low-risk {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .warning-box {
+            margin-top: 20px;
+            text-align: left;
+            background: #fff3cd;
+            padding: 15px;
+            border-radius: 6px;
+            border-left: 5px solid orange;
+        }
+
+        .recommendation-box {
+            margin-top: 20px;
+            text-align: left;
+            background: #d4edda;
+            padding: 15px;
+            border-radius: 6px;
+            border-left: 5px solid green;
+        }
+
+        .back-btn {
+            padding: 12px 25px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .back-btn:hover {
+            background: #0056b3;
+        }
+    </style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+{% if student %}
+
+<div class="profile-card">
+
+    <h2>🔍 Student Search Profile</h2>
+
+    <hr>
+
+    <table>
+
+        <tr>
+            <td><b>👤 Name</b></td>
+            <td>{{ student['name'] }}</td>
+        </tr>
+
+        <tr>
+            <td><b>🆔 Roll Number</b></td>
+            <td>{{ student['rollno'] }}</td>
+        </tr>
+
+        <tr>
+            <td><b>🏫 Department</b></td>
+            <td>{{ student['department'] }}</td>
+        </tr>
+
+        <tr>
+            <td><b>📚 Year</b></td>
+            <td>{{ student['year'] }}</td>
+        </tr>
+
+        <tr>
+            <td><b>📈 Attendance</b></td>
+            <td>{{ student['attendance'] }}%</td>
+        </tr>
+
+        <tr>
+            <td><b>🎓 CGPA</b></td>
+            <td>{{ student['cgpa'] }}</td>
+        </tr>
+
+        <tr>
+            <td><b>📖 Backlogs</b></td>
+            <td>{{ student['backlogs'] }}</td>
+        </tr>
+
+        <tr>
+            <td><b>📝 Internal Marks</b></td>
+            <td>{{ student['internal_marks'] }}</td>
+        </tr>
+
+        <tr>
+            <td><b>💰 Fee Paid</b></td>
+            <td>{{ student['fee_paid'] }}</td>
+        </tr>
+
+        <tr>
+            <td><b>⚠ Risk Status</b></td>
+            <td>{{ student['prediction'] }}</td>
+        </tr>
+
+        <tr>
+            <td><b>📊 Risk Score</b></td>
+            <td>{{ student['riskscore'] }}%</td>
+        </tr>
+
+    </table>
+
+    <div class="risk-box {% if student['prediction'] %}{{ student['prediction'].lower().replace(' ', '-') }}{% endif %}">
+
+        Risk Assessment Status:
+        {% if student['prediction'] %}
+            {{ student['prediction'] }}
+        {% else %}
+            Not Evaluated Yet
+        {% endif %}
+
+    </div>
+
+    {% if warnings %}
+    <div class="warning-box">
+
+        <h3>⚠ Warning Indicators</h3>
+
+        <ul>
+            {% for warning in warnings %}
+                <li><b>{{ warning }}</b></li>
+            {% endfor %}
+        </ul>
+
+    </div>
+    {% endif %}
+
+    {% if recommendations %}
+    <div class="recommendation-box">
+
+        <h3>💡 Recommendations</h3>
+
+        <ul>
+            {% for rec in recommendations %}
+                <li>{{ rec }}</li>
+            {% endfor %}
+        </ul>
+
+    </div>
+    {% endif %}
+
+</div>
+
+{% else %}
+
+<div style="
+    background:#f8d7da;
+    color:#721c24;
+    padding:20px;
+    border-radius:6px;
+    font-weight:bold;
+">
+    ⚠ No student found with that Roll Number.
+</div>
+
+{% endif %}
+
+<br>
+
+<a href="/admin">
+    <button class="back-btn">
+        ⬅ Back to Admin Dashboard
+    </button>
+</a>
+
+</div>
+
+</body>
+</html>

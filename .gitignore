@@ -1,0 +1,15 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Environments and Secrets
+.env
+.venv
+env/
+venv/
+ENV/
+
+# Large Model Files (Uncomment the line below if your .pkl files are too large for GitHub)
+# *.pkl

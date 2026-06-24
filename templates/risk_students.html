@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{risk}} Students</title>
+
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            text-align: center;
+            margin: 0;
+            padding: 30px;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .back-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-bottom: 30px;
+        }
+
+        .back-btn:hover {
+            background-color: #0056b3;
+        }
+
+        .table-container {
+            display: flex;
+            justify-content: center;
+        }
+
+        table {
+            width: 90%;
+            max-width: 1000px;
+            border-collapse: collapse;
+            background-color: white;
+            box-shadow: 0px 4px 10px rgba(0,0,0,0.15);
+        }
+
+        th {
+            background-color: #dc3545;
+            color: white;
+            padding: 15px;
+            font-size: 16px;
+        }
+
+        td {
+            padding: 12px;
+            border: 1px solid #ddd;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+
+        tr:hover {
+            background-color: #e9ecef;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <h1>📋 {{risk}} Students</h1>
+
+    <a href="/admin" class="back-btn">
+        ← Back to Dashboard
+    </a>
+
+    <div class="table-container">
+
+        <table>
+
+            <tr>
+                <th>Roll No</th>
+                <th>Department</th>
+                <th>Name</th>
+                <th>Risk Level</th>
+                <th>Risk Score</th>
+            </tr>
+
+            {% for student in students %}
+
+            <tr>
+
+                <td>{{ student['rollno'] }}</td>
+
+                <td>{{ student['department'] }}</td>
+
+                <td>{{ student['name'] }}</td>
+
+                <td>{{ student['prediction'] }}</td>
+
+                <td>{{ student['riskscore'] }}%</td>
+
+            </tr>
+
+            {% endfor %}
+
+        </table>
+
+    </div>
+
+</body>
+
+</html>
