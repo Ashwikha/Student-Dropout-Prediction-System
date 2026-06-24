@@ -56,9 +56,10 @@ http://127.0.0.1:5000
 ##Screenshots
 <img width="3840" height="2275" alt="Screenshot (218)" src="https://github.com/user-attachments/assets/ba0533ac-5141-4c7a-aff9-0d01d22cdaa4" />
 <img width="3840" height="2281" alt="Screenshot (220)" src="https://github.com/user-attachments/assets/6b195859-ecee-44ef-9e22-decd33bf9433" />
-<img width="3840" heig<img width="3840" height="2269" alt="Screenshot (222)" src="https://github.com/user-attachments/assets/84709b90-3df6-423d-b75f-7ff09dccd047" />
-<img width="3840" height="2281" alt="Screenshot (221)" src="https://github.com/user-attachments/assets/3040e614-3856-4a4d-922e-c758e76de229" />
+<img width="3840" height="2269" alt="Screenshot (222)" src="https://github.com/user-attachments/assets/84709b90-3df6-423d-b75f-7ff09dccd047" />
 <img width="3840" height="2275" alt="Screenshot (219)" src="https://github.com/user-attachments/assets/32fbe161-17fb-453c-b599-e8f0dccada4c" />
+<img width="3840" height="2281" alt="Screenshot (221)" src="https://github.com/user-attachments/assets/3040e614-3856-4a4d-922e-c758e76de229" />
+
 
 ## Student Data Input
 
